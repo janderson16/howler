@@ -1,4 +1,5 @@
 var API = 'http://localhost:3000/api/v1'
+var PAPI = "https://info-is-everywhere.herokuapp.com/api/v1"
 
 var printStuff = function(data){
 
@@ -27,7 +28,7 @@ var postData = function(){
   var input = $("textarea[name=text]").val();
 
   return $.ajax({
-    url: API + '/tones',
+    url: PAPI + '/tones',
     method: "GET",
     data: {text: input}
   })
