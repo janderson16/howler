@@ -4,7 +4,7 @@ describe WatsonService do
   it "returns json of tone data" do
     VCR.use_cassette('/services/get_tones') do
       serv = WatsonService.new
-      return_data = serv.get_tones
+      return_data = serv.get_tones("Something")
       first_element = return_data.first
 
       expect(return_data.count).to eq(3)
