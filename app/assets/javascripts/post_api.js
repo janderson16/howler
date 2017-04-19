@@ -4,7 +4,7 @@ var PAPI = "https://info-is-everywhere.herokuapp.com/api/v1"
 var printStuff = function(data){
 
   debugger;
-  
+
   $("#emotionalData td").remove();
   $("#languageData td").remove();
   $("#social-data td").remove();
@@ -105,7 +105,7 @@ var postData = function(){
   var input = $("textarea[name=text]").val();
 
   return $.ajax({
-    url: API + '/tones',
+    url: PAPI + '/tones',
     method: "GET",
     data: {text: input}
   })
