@@ -1,9 +1,9 @@
 class Tone
 
-  def self.get
+  def self.get(text)
     serv = WatsonService.new
     tones = []
-    serv.get_tones.each do |tone_data|
+    serv.get_tones(text).each do |tone_data|
       tone_categories = Hash.new
       tone_hash = Hash.new
       tone_data[:tones].each do |tone_info|

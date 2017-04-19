@@ -2,8 +2,8 @@ require "rails_helper"
 
 describe "get tones" do
   it "when user requests /api/v1/tones they are returned json data from the watson api call" do
-    VCR.use_cassette('/services/get_tones') do
-      get '/api/v1/tones'
+    VCR.use_cassette('/services/request') do
+      get '/api/v1/tones?text=something'
 
       expect(response).to be_success
 
