@@ -12,7 +12,7 @@ class WatsonService
   private
 
   def swap_space(words)
-    words.tr(" ", "%20")
+    words.gsub(/[^a-zA-Z0-9\-\s.?!]/,"") 
   end
 
   def parse(response)

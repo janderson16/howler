@@ -3,6 +3,8 @@ var PAPI = "https://info-is-everywhere.herokuapp.com/api/v1"
 
 var printStuff = function(data){
 
+  debugger;
+  
   $("#emotionalData td").remove();
   $("#languageData td").remove();
   $("#social-data td").remove();
@@ -23,13 +25,87 @@ var printStuff = function(data){
   $("#social-data tbody").append("<tr>").append("<td>Agreeableness</td><td>"+ data[2]["Social Tone"]["Agreeableness"] +"</td>")
   $("#social-data tbody").append("<tr>").append("<td>Emotional Range</td><td>"+ data[2]["Social Tone"]["Emotional Range"] +"</td>")
 
+  var doEmotionChart = $(function () {
+    var myChart = Highcharts.chart('emotionChartYo', {
+        chart: {
+            polar: true
+        },
+        title: {
+            text: 'Emotion Data'
+        },
+        xAxis: {
+            categories: ['Anger', 'Disgust', 'Fear', 'Joy', 'Sadness']
+        },
+
+        series: [{
+            name: 'Tones',
+            data: [data[0]["Emotion Tone"]["Anger"], data[0]["Emotion Tone"]["Disgust"] , data[0]["Emotion Tone"]["Fear"], data[0]["Emotion Tone"]["Joy"], data[0]["Emotion Tone"]["Sadness"]]
+        }],
+
+        zones: [{
+           value: 0,
+           color: '#f7a35c'
+        }, {
+           value: .5,
+           color: '#7cb5ec'
+        }, {
+           color: '#90ed7d'
+        }]
+    });
+
+  });
+
+  var doLanguageChart = $(function () {
+    var myOtherChart = Highcharts.chart('languageChart', {
+      chart: {
+        polar: true
+      },
+      title: {
+        text: 'Language Data'
+      },
+      xAxis: {
+        categories: ['Analytical', 'Confident', 'Tentative']
+      },
+
+      series: [{
+        name: 'Tones',
+        data: [data[1]["Language Tone"]["Analytical"], data[1]["Language Tone"]["Confident"], data[1]["Language Tone"]["Tentative"] ]
+      }]
+
+      });
+    });
+
+    var doSocialChart = $(function () {
+      var myOtheOtherrChart = Highcharts.chart('socialChart', {
+        chart: {
+          polar: true
+        },
+        title: {
+          text: 'Social Data'
+        },
+        xAxis: {
+          categories: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Emotional Range']
+        },
+
+        series: [{
+          name: 'Tones',
+          data: [data[2]["Social Tone"]["Openness"], data[2]["Social Tone"]["Conscientiousness"], data[2]["Social Tone"]["Extraversion"],  data[2]["Social Tone"]["Agreeableness"], data[2]["Social Tone"]["Emotional Range"]]
+        }]
+
+        });
+      });
+
+  $("#language-chart-script").add(doLanguageChart)
+
+  $("#emotion-chart-script").add(doEmotionChart)
+  $("#social-chart-script").add(doSocialChart)
 }
 
 var postData = function(){
   var input = $("textarea[name=text]").val();
 
   return $.ajax({
-    url: PAPI + '/tones',
+    url: API + '/tones',
     method: "GET",
     data: {text: input}
   })
