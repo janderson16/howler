@@ -4,6 +4,8 @@ var PAPI = "https://info-is-everywhere.herokuapp.com/api/v1"
 var printStuff = function(data){
 
   $("#emotionalData td").remove();
+  $("#languageData td").remove();
+  $("#social-data td").remove();
 
   $("#emotionalData tbody").append("<tr>").append("<td>Anger</td><td>"+ data[0]["Emotion Tone"]["Anger"] +"</td>")
   $("#emotionalData tbody").append("<tr>").append("<td>Disgust</td><td>"+ data[0]["Emotion Tone"]["Disgust"] +"</td>")
@@ -11,7 +13,6 @@ var printStuff = function(data){
   $("#emotionalData tbody").append("<tr>").append("<td>Joy</td><td>"+ data[0]["Emotion Tone"]["Joy"] +"</td>")
   $("#emotionalData tbody").append("<tr>").append("<td>Sadness</td><td>"+ data[0]["Emotion Tone"]["Sadness"] +"</td>")
 
-  debugger;
   $("#languageData tbody").append("<tr>").append("<td>Analytical</td><td>"+ data[1]["Language Tone"]["Analytical"] +"</td>")
   $("#languageData tbody").append("<tr>").append("<td>Confident</td><td>"+ data[1]["Language Tone"]["Confident"] +"</td>")
   $("#languageData tbody").append("<tr>").append("<td>Tentative</td><td>"+ data[1]["Language Tone"]["Tentative"] +"</td>")
