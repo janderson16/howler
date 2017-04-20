@@ -5,12 +5,15 @@ describe 'when user is on root they are able to fill out a form' do
         VCR.use_cassette('/services/user_submit') do
             visit root_path
 
-            fill_in :text, with: 'I hate cheese'
-            click_on('Submit')
+            within(".input-form") do
+              find("textarea[name='text']").set('I hate cheese.')
+              find('input[name="get-data"]').click
+            end
 
-            expect(page).to have_content('Emotional Tones')
-            expect(page).to have_content('Language Tones')
-            expect(page).to have_content('Social Tones')
+            expect(page).to have_content('What would you like to analyze?')
+            expect(page).to have_content('Tone Name')
+            expect(page).to have_content('Tone Score')
+
         end
     end
 end

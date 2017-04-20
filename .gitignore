@@ -20,5 +20,5 @@
 /config/application.yml
 
 /lor
-
+/coverage
 /spec/cassettes
