@@ -116,10 +116,22 @@ var printStuff = function(data){
   $("#language-chart-script").add(doLanguageChart)
   $("#emotion-chart-script").add(doEmotionChart)
   $("#social-chart-script").add(doSocialChart)
+
+  $('#save-btn').on('click', function(event) {
+    saveHowler(data)
+  })
+}
+
+function saveHowler(data) {
+  
 }
 
 var postData = function(){
   var input = $("textarea[name=text]").val();
+
+  var saveButton = `<button id='save' class = 'btn'>Save</button>`
+
+  $('#save-btn').append(saveButton)
 
   return $.ajax({
     url: API + '/tones',
