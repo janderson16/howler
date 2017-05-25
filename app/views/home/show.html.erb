@@ -2,11 +2,13 @@
 
 <div class="container">
   <h1 class="center">What would you like to analyze?</h1>
+  <div class="error">
+  </div>
   <div class="row">
       <form class="col s12 input-form">
         <div class="row">
           <div class="input-field col s12">
-            <!-- <textarea id="textarea1" class="materialize-textarea" name="text" placeholder="Title (optional)"></textarea> -->
+            <input placeholder="Title" id="title" type="text">
             <textarea id="textarea1" class="materialize-textarea" name="text" placeholder="Enter Text to Interpret"></textarea>
             <input type="submit" name="get-data" class="btn">
             <% unless current_user %>
@@ -19,6 +21,10 @@
 
           </div>
         <% end %>
+        <div id="clear-input">
+
+        </div>
+
       </form>
     </div>
     <div id="emotionChartYo" class="col s4 green"></div>

@@ -39,6 +39,7 @@ var printStuff = function(data){
   $("#social-data tbody").append("<tr>").append("<td>Agreeableness</td><td>"+ agreeableness +"%</td>")
   $("#social-data tbody").append("<tr>").append("<td>Emotional Range</td><td>"+ emotionalRange +"%</td>")
 
+  $('#data-tables').show()
 
   var doEmotionChart = $(function () {
     var myChart = Highcharts.chart('emotionChartYo', {
@@ -120,18 +121,66 @@ var printStuff = function(data){
   $('#save-btn').on('click', function(event) {
     saveHowler(data)
   })
+
+  $('#clear').on('click', function(event) {
+    clearInput()
+  })
+}
+
+function clearInput(){
+
+  $('#data-tables').hide()
+
+  $('#clear').empty().remove()
+  $('#title').val('')
+  $('#textarea1').val('')
+
+  $("#emotionalData td").remove();
+  $("#languageData td").remove();
+  $("#social-data td").remove();
+
+  $("#emotionChartYo").empty()
+  $("#languageChart").empty()
+  $("#socialChart").empty()
+
 }
 
 function saveHowler(data) {
-  
+  var howlerData = {howler: {title: $('#title').val(),
+                             text: $('#textarea1').val(),
+                             anger: data[0]["Emotion Tone"]["Anger"],
+                             disgust: data[0]["Emotion Tone"]["Disgust"],
+                             fear: data[0]["Emotion Tone"]["Fear"],
+                             joy: data[0]["Emotion Tone"]["Joy"],
+                             sadness: data[0]["Emotion Tone"]["Sadness"],
+                             analytical: data[1]["Language Tone"]["Analytical"],
+                             confident: data[1]["Language Tone"]["Confident"],
+                             tentative: data[1]["Language Tone"]["Tentative"],
+                             openness: data[2]["Social Tone"]["Openness"],
+                             conscientiousness: data[2]["Social Tone"]["Conscientiousness"],
+                             extraversion: data[2]["Social Tone"]["Extraversion"],
+                             agreeableness: data[2]["Social Tone"]["Agreeableness"],
+                             emotional_range: data[2]["Social Tone"]["Emotional Range"]
+                           }}
+
+  $.ajax({
+    url: API + '/howlers',
+    method: "POST",
+    data: howlerData
+  })
+  .fail(function(error){
+    console.error(error)
+  });
 }
 
 var postData = function(){
   var input = $("textarea[name=text]").val();
 
   var saveButton = `<button id='save' class = 'btn'>Save</button>`
+  var clearButton = `<button id='clear' class = 'btn'>Clear</button>`
 
   $('#save-btn').append(saveButton)
+  $('#clear-input').append(clearButton)
 
   return $.ajax({
     url: API + '/tones',
@@ -146,6 +195,7 @@ var postData = function(){
 }
 
 $(document).ready(function(){
+  $('#data-tables').hide()
 
   $("input[type=submit]").on('click', postData)
 
