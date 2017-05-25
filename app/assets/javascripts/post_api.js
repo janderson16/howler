@@ -224,6 +224,6 @@ $(document).ready(function(){
   $('form').on('submit', function(event){
     event.preventDefault();
   });
-});
+}); 
 
 maxLength(document.getElementById("textarea1"));
