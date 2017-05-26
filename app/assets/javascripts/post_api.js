@@ -225,5 +225,3 @@ $(document).ready(function(){
     event.preventDefault();
   });
 });
-
-maxLength(document.getElementById("textarea1"));
