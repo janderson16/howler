@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :tones, only: [:create, :index]
       resources :howlers, only: [:create]
-      resources :extensions, only: [:create]
+      get '/extensions', to: 'extensions#show'
     end
   end
 end
