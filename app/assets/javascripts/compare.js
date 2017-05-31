@@ -13,55 +13,55 @@ function compareChart(){
           alert("You need to select only compare 2 Howlers");
       }
       else
-        $('#compare').append(
           makeCompareChart()
-        )
+
 }
 
 function makeCompareChart(){
   var idOne = $('input[type=checkbox]:checked')[0].id
-  // var chartInputOne = $(`.data-${idOne}`)
-  // var firstOpenness = $(`.data-${idOne}`).data("openness")
   var idTwo = $('input[type=checkbox]:checked')[1].id
 
   var open = function findOpenness(id){
-      $(`.data-${id}`).data("openness")
+      return $(`.data-${id}`).data("openness")
     }
+    debugger
   var conscientious = function findConscientiousness(id){
-      $(`.data-${id}`).data("conscientiousness")
+      return $(`.data-${id}`).data("conscientiousness")
     }
   var extraverted = function findExtroversion(id){
-      $(`.data-${id}`).data("extraversion")
+    return  $(`.data-${id}`).data("extraversion")
     }
   var agreeable = function findAgreeableness(id){
-      $(`.data-${id}`).data("agreeableness")
+    return  $(`.data-${id}`).data("agreeableness")
     }
   var emoRange = function findEmotionalRange(id){
-      $(`.data-${id}`).data("emotional-range")
+    return  $(`.data-${id}`).data("emotional-range")
     }
+    var doSocialChart = $(function () {
+      var socialCompare = Highcharts.chart(`small-social-chart-comparison`, {
+        chart: {
+          polar: true
+        },
+        title: {
+          text: 'Social Data'
+        },
+        xAxis: {
+          categories: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Emotional Range']
+        },
 
-    var socialCompare = Highcharts.chart(`small-social-chart-comparison`, {
-      chart: {
-        polar: true
-      },
-      title: {
-        text: 'Social Data'
-      },
-      xAxis: {
-        categories: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Emotional Range']
-      },
+        series: [{
+          type: 'area',
+          name: 'Tones1',
+          data: [open(idOne), conscientious(idOne), extraverted(idOne), agreeable(idOne), emoRange(idOne)]
+        },
+        {
+          type: 'area',
+          name: 'Tones2',
+          data: [open(idTwo), conscientious(idTwo), extraverted(idTwo), agreeable(idTwo), emoRange(idTwo)]
+        }],
 
-      series: [{
-        type: 'area',
-        name: 'Tones1',
-        data: [open(idOne), conscientious(idOne), extraverted(idOne), agreeable(idOne), emoRange(idOne)]
-      },
-      {
-        type: 'area',
-        name: 'Tones2',
-        data: [open(idTwo), conscientious(idTwo), extraverted(idTwo), agreeable(idTwo), emoRange(idTwo)]
-      }],
+      })
+    })
+    $(`#compare-chart`).add(doSocialChart)
 
-    });
-    socialCompare()
-}
+};
