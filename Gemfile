@@ -29,6 +29,7 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem "figaro"
 gem 'httparty'
+gem 'rb-readline'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -44,6 +45,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'
+  gem 'selenium-webdriver', '~> 2.53.4'
 end
 
 group :development do
