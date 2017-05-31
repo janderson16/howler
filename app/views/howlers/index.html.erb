@@ -33,13 +33,15 @@
                     data: [$(`.data-${chartId}`).data("openness"), $(`.data-${chartId}`).data("conscientiousness"), $(`.data-${chartId}`).data("extraversion"),  $(`.data-${chartId}`).data("agreeableness"), $(`.data-${chartId}`).data("emotional-range")]
                   }],
 
-                });
-              });
-              $(`.small-graph-${chartId}`).add(doSocialChart)
-            }
-            makeChart()
-            </script>
+                    });
+                  });
+                  $(`.small-graph-${chartId}`).add(doSocialChart)
+                }
+                makeChart()
+              </script>
+            </div>
           </div>
+          <%= link_to "Delete Howler", howler, :method => :delete %>
         </div>
       </div>
     </div>
