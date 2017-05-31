@@ -8,9 +8,9 @@ $(document).ready(function(){
 })
 
 function compareChart(){
-      if ($('input[type=checkbox]:checked').length > 2) {
+      if ($('input[type=checkbox]:checked').length > 2 && $('input[type=checkbox]:checked').length < 2) {
           $(this).prop('checked', false);
-          alert("You can only compare 2 Howlers");
+          alert("You need to select only compare 2 Howlers");
       }
       else
         $('#compare').append(
@@ -19,10 +19,27 @@ function compareChart(){
 }
 
 function makeCompareChart(){
-  var chartIdOne = $('input[type=checkbox]:checked')[0].id
-  var chartIdTwo = $(`.data-${<%= howler.id %>}`).data('id')
+  var idOne = $('input[type=checkbox]:checked')[0].id
+  // var chartInputOne = $(`.data-${idOne}`)
+  // var firstOpenness = $(`.data-${idOne}`).data("openness")
+  var idTwo = $('input[type=checkbox]:checked')[1].id
 
-  var doSocialChart = $(function () {
+  var open = function findOpenness(id){
+      $(`.data-${id}`).data("openness")
+    }
+  var conscientious = function findConscientiousness(id){
+      $(`.data-${id}`).data("conscientiousness")
+    }
+  var extraverted = function findExtroversion(id){
+      $(`.data-${id}`).data("extraversion")
+    }
+  var agreeable = function findAgreeableness(id){
+      $(`.data-${id}`).data("agreeableness")
+    }
+  var emoRange = function findEmotionalRange(id){
+      $(`.data-${id}`).data("emotional-range")
+    }
+
     var socialCompare = Highcharts.chart(`small-social-chart-comparison`, {
       chart: {
         polar: true
@@ -36,17 +53,15 @@ function makeCompareChart(){
 
       series: [{
         type: 'area',
-        name: 'Tones',
-        data: [$(`.data-${chartIdTwo}`).data("openness"), $(`.data-${chartIdTwo}`).data("conscientiousness"), $(`.data-${chartId}`).data("extraversion"),  $(`.data-${chartIdTwo}`).data("agreeableness"), $(`.data-${chartIdTwo}`).data("emotional-range")]
+        name: 'Tones1',
+        data: [open(idOne), conscientious(idOne), extraverted(idOne), agreeable(idOne), emoRange(idOne)]
       },
-    // next_series_of_data
       {
         type: 'area',
-        name: 'Tones',
-        data: [$(`.data-${chartIdOne}`).data("openness"), $(`.data-${chartId}`).data("conscientiousness"), $(`.data-${chartId}`).data("extraversion"),  $(`.data-${chartIdOne}`).data("agreeableness"), $(`.data-${chartIdOne}`).data("emotional-range")]
-      }
-  ],
+        name: 'Tones2',
+        data: [open(idTwo), conscientious(idTwo), extraverted(idTwo), agreeable(idTwo), emoRange(idTwo)]
+      }],
 
     });
-  });
+    socialCompare()
 }
