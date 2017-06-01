@@ -7,13 +7,14 @@ Rails.application.routes.draw do
   get '/auth/twitter/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: :logout
 
+  get '/extensions', to: 'extensions#show', as: :extension_show
+  
   resources :howlers, only: [:index, :destroy, :show]
 
   namespace :api do
     namespace :v1 do
       resources :tones, only: [:create, :index]
       resources :howlers, only: [:create]
-      get '/extensions', to: 'extensions#show'
     end
   end
 end
