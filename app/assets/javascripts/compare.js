@@ -12,10 +12,11 @@ function compareChart(){
           $(this).prop('checked', false);
           alert("You need to select a total of 2 Howlers to compare");
       }
-      else
+
+      else {
       $(`#compare-chart`).clear
           makeCompareChart()
-
+        }
 }
 
 function makeCompareChart(){
@@ -54,7 +55,7 @@ function makeCompareChart(){
           name: 'Tones1',
           data: [open(idOne), conscientious(idOne), extraverted(idOne), agreeable(idOne), emoRange(idOne)]
         },
-        
+
         {
           type: 'area',
           name: 'Tones2',
