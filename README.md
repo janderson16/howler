@@ -4,6 +4,9 @@ Howler is a web app and Chrome extension that allows you to run a sentiment anal
 
 Utilizing the power of IBM's Watson you now can double check the feelings your email may convey, or perhaps you want to see the underlying meaning of a tweet.
 
+# Chrome Extension Companion
+
+This application has a companion [The Howler Chrome Extension](https://github.com/CjMoore/howler-extension). It enables the user to select text in their browser and send that text to be analyzed to our application. It will open a new window with the analysis on a show page for the text.
 
 * Ruby version: 2.3.0
 * Rails version: 5.0.2
