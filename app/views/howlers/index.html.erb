@@ -44,13 +44,15 @@
                 }
                 makeChart()
               </script>
-              <p>
-                <input class="with-gap" name="group1" type="checkbox" id="<%=howler.id %>" />
-                <label for="<%=howler.id %>">Compare</label>
-              </p>
             </div>
           </div>
-          <%= link_to "Delete Howler", howler, :method => :delete %>
+          <div class="card-action">
+            <p>
+              <input class="with-gap" name="group1" type="checkbox" id="<%=howler.id %>" />
+              <label for="<%=howler.id %>">Compare</label>
+            </p>
+            <%= link_to "Delete Howler", howler, :method => :delete %>
+          </div>
 
         </div>
       </div>
