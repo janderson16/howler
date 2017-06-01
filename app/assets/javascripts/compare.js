@@ -12,6 +12,7 @@ function compareChart(){
           $(this).prop('checked', false);
           alert("You need to select a total of 2 Howlers to compare");
       }
+
       else {
       $(`#compare-chart`).clear
           makeCompareChart()
