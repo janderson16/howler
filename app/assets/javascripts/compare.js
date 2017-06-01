@@ -54,14 +54,13 @@ function makeCompareChart(){
           name: 'Tones1',
           data: [open(idOne), conscientious(idOne), extraverted(idOne), agreeable(idOne), emoRange(idOne)]
         },
+        
         {
           type: 'area',
           name: 'Tones2',
           data: [open(idTwo), conscientious(idTwo), extraverted(idTwo), agreeable(idTwo), emoRange(idTwo)]
         }],
-
       })
     })
     $(`#compare-chart`).add(doSocialChart)
-
 };
