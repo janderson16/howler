@@ -9,10 +9,9 @@ $(document).ready(function(){
 
 function compareChart(){
       if ($('input[type=checkbox]:checked').length > 2 || $('input[type=checkbox]:checked').length < 2 ) {
-          $(this).prop('checked', false);
+          $('.with-gap').prop('checked', false);
           alert("You need to select a total of 2 Howlers to compare");
       }
-
       else {
       $(`#compare-chart`).clear
           makeCompareChart()
