@@ -33,7 +33,7 @@ $(document).ready(function(){
     }
 
     return $.ajax({
-      url: API + `/howlers/${$('.data').data('id')}`,
+      url: PAPI + `/howlers/${$('.data').data('id')}`,
       method: 'PATCH',
       data: updateData
     }).then(printData)
